@@ -1,56 +1,49 @@
-import React from 'react';
+import React from "react";
 
-
-const UserItem = ({user}) => {
-
+const ProjectItem = ({project}) => {
     return (
         <tr>
             <td>
-                {user.username}
+                {project.title}
             </td>
-                {user.first_name}
+                {project.decription}
             <td>
-                {user.last_name}
+                {project.project_manager}
             </td>
             <td>
-                {user.email}
+                {project.created_at}
             </td>
         </tr>
-
     )
 }
 
-const UserList = ({users}) => {
+const ProjectList = ({projects}) => {
 
     return (
         <table className="table-info">
             <tbody className="table-bordered">
             <tr className="heading" align="center">
                 <th>
-                    User name
+                    Проект
                 </th>
                 <th>
-                    First name
+                    Описание проекта
                 </th>
                 <th>
-                    Last name
+                    Руководитель проекта
                 </th>
                 <th>
-                    Email
+                    Дата проекта
                 </th>
 
             </tr>
             {
-                users.map((user) => <UserItem user={user}/>)
+                projects.map((project) => <ProjectItem project={project}/>)
             }
             </tbody>
 
         </table>
-    )
+        )
+    }
 
-
-}
-
-export default UserList;
-
-
+    export default ProjectList;
