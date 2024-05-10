@@ -7,6 +7,7 @@ import Footer from './components/Footer.js'
 import Navbar from './components/Menu.js'
 import UserList from './components/User.js'
 import axios from 'axios'
+import ProjectList from "./components/Projects";
 
 
 const DOMAIN = 'http://127.0.0.1:8000/api/'
@@ -22,16 +23,16 @@ class App extends React.Component {
                 {name: 'Проекты', href: '/projects'},
                 {name: 'Todo', href: '/todo'},
             ],
-            users: []
+            users: [],
+            projects: []
         }
     }
 
     componentDidMount() {
-        axios.get(get_url('users/'))
+        axios.get(get_url(['users/', 'projects/']))
             .then(response => {
-                this.setState({users: response.data})
-            }).catch(error => console.log(error))
-    }
+                this.setState({users: response.data, projects: response.data})
+            }).catch(error => console.log(error))};
 
 
     render() {
@@ -40,9 +41,14 @@ class App extends React.Component {
                 <header>
                     <Navbar navbarItems={this.state.navbarItems}/>
                 </header>
-                <main role="main" class="flex-shrink-0">
+                <main role="main" className="flex-shrink-0">
                     <div className="container">
                         <UserList users={this.state.users}/>
+                    </div>
+                </main>
+                <main role="main" className="flex-shrink-0">
+                    <div className="container">
+                        <ProjectList projects={this.state.projects}/>
                     </div>
                 </main>
                 <Footer/>
@@ -55,4 +61,3 @@ class App extends React.Component {
 
 
 export default App;
-
